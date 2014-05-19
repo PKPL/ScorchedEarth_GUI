@@ -29,11 +29,11 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxBoxSizer* bSizer3;
 	bSizer3 = new wxBoxSizer( wxVERTICAL );
 	
-	m_panel1 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	m_panel1 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize( -1,-1 ), wxTAB_TRAVERSAL );
 	wxBoxSizer* bSizer4;
 	bSizer4 = new wxBoxSizer( wxVERTICAL );
 	
-	top_image = new wxStaticBitmap( m_panel1, wxID_ANY, wxBitmap( wxT("Imgs/temp_logo.jpg"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, 0 );
+	top_image = new wxStaticBitmap( m_panel1, wxID_ANY, wxBitmap( wxT("Imgs/temp_logo.bmp"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxSize( 1250,95 ), 0 );
 	bSizer4->Add( top_image, 0, wxALL, 5 );
 	
 	m_panel1->SetSizer( bSizer4 );

@@ -37,7 +37,7 @@
             <property name="minimum_size"></property>
             <property name="name">GUIDialog</property>
             <property name="pos"></property>
-            <property name="size">870,520</property>
+            <property name="size">1280,720</property>
             <property name="style">wxDEFAULT_DIALOG_STYLE</property>
             <property name="subclass"></property>
             <property name="title">wxWidgets Application Template</property>
@@ -111,7 +111,7 @@
                                 <property name="name">m_panel1</property>
                                 <property name="permission">protected</property>
                                 <property name="pos"></property>
-                                <property name="size"></property>
+                                <property name="size">-1,-1</property>
                                 <property name="subclass"></property>
                                 <property name="tooltip"></property>
                                 <property name="validator_data_type"></property>
@@ -155,7 +155,7 @@
                                         <property name="proportion">0</property>
                                         <object class="wxStaticBitmap" expanded="1">
                                             <property name="bg"></property>
-                                            <property name="bitmap">Imgs/temp_logo.jpg; Load From File</property>
+                                            <property name="bitmap">Imgs/temp_logo.bmp; Load From File</property>
                                             <property name="context_help"></property>
                                             <property name="context_menu">1</property>
                                             <property name="enabled">1</property>
@@ -168,7 +168,7 @@
                                             <property name="name">top_image</property>
                                             <property name="permission">protected</property>
                                             <property name="pos"></property>
-                                            <property name="size"></property>
+                                            <property name="size">1250,95</property>
                                             <property name="subclass"></property>
                                             <property name="tooltip"></property>
                                             <property name="validator_data_type"></property>
