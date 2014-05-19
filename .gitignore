@@ -23,6 +23,7 @@ local.properties
 .classpath
 .settings/
 .loadpath
+.wx_pch.h.gch/
 
 # External tool builders
 .externalToolBuilders/
@@ -221,3 +222,4 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+ScorchedEarth_GUI/wx_pch.h.gch/Debug_wx_pch_h_gch
