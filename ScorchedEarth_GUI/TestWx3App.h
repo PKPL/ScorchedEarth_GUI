@@ -1,21 +1,22 @@
 /***************************************************************
- * Name:      ScorchedEarth_GUIApp.h
+ * Name:      TestWx3App.h
  * Purpose:   Defines Application Class
  * Author:     ()
- * Created:   2014-05-19
+ * Created:   2014-05-12
  * Copyright:  ()
  * License:
  **************************************************************/
 
-#ifndef SCORCHEDEARTH_GUIAPP_H
-#define SCORCHEDEARTH_GUIAPP_H
+#ifndef TESTWX3APP_H
+#define TESTWX3APP_H
 
+#include <wx/wx.h>
 #include <wx/app.h>
 
-class ScorchedEarth_GUIApp : public wxApp
+class TestWx3App : public wxApp
 {
     public:
         virtual bool OnInit();
 };
 
-#endif // SCORCHEDEARTH_GUIAPP_H
+#endif // TESTWX3APP_H
