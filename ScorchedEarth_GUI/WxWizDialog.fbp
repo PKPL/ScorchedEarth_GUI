@@ -38,7 +38,7 @@
             <property name="name">GUIDialog</property>
             <property name="pos"></property>
             <property name="size">1280,720</property>
-            <property name="style">wxDEFAULT_DIALOG_STYLE</property>
+            <property name="style">wxDEFAULT_DIALOG_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX</property>
             <property name="subclass"></property>
             <property name="title">wxWidgets Application Template</property>
             <property name="tooltip"></property>
@@ -163,11 +163,11 @@
                                             <property name="font"></property>
                                             <property name="hidden">0</property>
                                             <property name="id">wxID_ANY</property>
-                                            <property name="maximum_size"></property>
-                                            <property name="minimum_size"></property>
+                                            <property name="maximum_size">-1,-1</property>
+                                            <property name="minimum_size">1250,200</property>
                                             <property name="name">top_image</property>
                                             <property name="permission">protected</property>
-                                            <property name="pos"></property>
+                                            <property name="pos">-1,-1</property>
                                             <property name="size">1250,95</property>
                                             <property name="subclass"></property>
                                             <property name="tooltip"></property>
