@@ -16,10 +16,13 @@
 #endif //__BORLANDC__
 
 #include "TestWx3Main.h"
+#include "maps_create.h"
 
 //helper functions
-enum wxbuildinfoformat {
-    short_f, long_f };
+enum wxbuildinfoformat
+{
+    short_f, long_f
+};
 
 wxString wxbuildinfo(wxbuildinfoformat format)
 {
@@ -76,30 +79,65 @@ void TestWx3Dialog::OnAbout(wxCommandEvent &event)
     wxMessageBox(msg, _("Welcome to..."));
 }
 
-void TestWx3Dialog::m_CanvasOnPaint( wxPaintEvent& event ){
-	wxBufferedPaintDC DC(m_Canvas);
-	int CWidth,CHeight;
-	m_Canvas->GetSize(&CWidth,&CHeight);
-	Doc->Draw(DC, CWidth, CHeight);
+void TestWx3Dialog::m_CanvasOnPaint( wxPaintEvent& event )
+{
+    wxBufferedPaintDC DC(m_Canvas);
+    int CWidth,CHeight;
+    m_Canvas->GetSize(&CWidth,&CHeight);
+    Doc->Draw(DC, CWidth, CHeight);
     if(missile1!=NULL)Doc->DrawShot(DC, CWidth, CHeight, missile1);
 }
 
-void TestWx3Dialog::m_button3OnButtonClick( wxCommandEvent& event ) {
+void TestWx3Dialog::m_button3OnButtonClick( wxCommandEvent& event )
+{
     Doc->angle1 += 0.1;
     missile1 = NULL;
-	m_Canvas->Refresh();
+    m_Canvas->Refresh();
 }
 
-void TestWx3Dialog::m_button4OnButtonClick( wxCommandEvent& event ) {
+void TestWx3Dialog::m_button4OnButtonClick( wxCommandEvent& event )
+{
     Doc->angle1 -= 0.1;
     missile1 = NULL;
-	m_Canvas->Refresh();
+    m_Canvas->Refresh();
 }
 
-void TestWx3Dialog::m_button5OnButtonClick( wxCommandEvent& event ) {
+void TestWx3Dialog::m_button5OnButtonClick( wxCommandEvent& event )
+{
     missile1 = initializeMissile(Doc->x1, Doc->y1);
     xCoordinate(missile1, 0);
     yCoordinate(missile1);
-	m_Canvas->Refresh();
+    m_Canvas->Refresh();
+}
+
+void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
+{
+    int map_layout[100][80] = {{0}};
+    create_mountain_map(map_layout);
+    int borderX[100];
+    int x, y;
+    for (x = 0; x < 100; x++)
+    {
+        for (y = 0; y < 80; y++)
+        {
+            if (map_layout[x][y] == 1 && map_layout[x][y+1] != 1)
+            {
+                borderX[x] = y;
+                y = 80;
+            }
+        }
+    }
+
+    for (x = 0; x < 100; x++)
+    {
+        wxString lelel = ( wxT(""));
+        lelel.append(wxString::Format(wxT("(%d, %d)"), (int)x, (int)borderX[x]));
+        m_textTest->AppendText(lelel);
+    }
+    //It verifies correctly so borderX holds the border line, How to use:
+    //Like a maths function, consider f(x) = borderX[X]
+    // If you want to know the border value of the terrain on X = 3: f(3) = y3, which means, borderX[3] retrieves the Y3 value.
+    //The points it displays when you click the button are the border points for each X in the map generated. format: (x, y)
+
 }
 

@@ -79,6 +79,9 @@
 		<Unit filename="TestWx3Main.cpp" />
 		<Unit filename="TestWx3Main.h" />
 		<Unit filename="WxWizDialog.fbp" />
+		<Unit filename="maps.h" />
+		<Unit filename="maps_create.cpp" />
+		<Unit filename="maps_create.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
