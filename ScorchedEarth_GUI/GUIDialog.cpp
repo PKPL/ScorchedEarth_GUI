@@ -23,6 +23,20 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 
+    //This is for image handling!
+    wxImageHandler * jpegLoader = new wxBMPHandler();
+    wxImage::AddHandler(jpegLoader);
+
+    wxBitmap bitmap = wxBitmap(wxT("Imgs/temp_logo.bmp"), wxBITMAP_TYPE_ANY);
+    int width = 680;
+    int height = 200;
+
+    if (bitmap.GetWidth() != width && bitmap.GetHeight() != height)
+    {
+        wxImage image = bitmap.ConvertToImage();
+        bitmap = wxBitmap(image.Scale(width, height));
+    }
+
 	wxBoxSizer* bSizer1;
 	bSizer1 = new wxBoxSizer( wxVERTICAL );
 
@@ -33,7 +47,7 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxBoxSizer* bSizer4;
 	bSizer4 = new wxBoxSizer( wxVERTICAL );
 
-	top_image = new wxStaticBitmap( m_panel1, wxID_ANY, wxBitmap( wxT("Imgs/temp_logo.bmp"), wxBITMAP_TYPE_ANY ), wxPoint( -1,-1 ), wxSize( 1250,95 ), 0 );
+	top_image = new wxStaticBitmap( m_panel1, wxID_ANY, bitmap , wxPoint( -1,-1 ), wxSize( 1250,95 ), 0 );
 	top_image->SetMinSize( wxSize( 1250,200 ) );
 
 	bSizer4->Add( top_image, 0, wxALL, 5 );
