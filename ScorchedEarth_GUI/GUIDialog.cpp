@@ -30,6 +30,15 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	bSizer3 = new wxBoxSizer( wxVERTICAL );
 	
 	m_panel1 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxBoxSizer* bSizer4;
+	bSizer4 = new wxBoxSizer( wxVERTICAL );
+	
+	top_image = new wxStaticBitmap( m_panel1, wxID_ANY, wxBitmap( wxT("Imgs/temp_logo.jpg"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer4->Add( top_image, 0, wxALL, 5 );
+	
+	m_panel1->SetSizer( bSizer4 );
+	m_panel1->Layout();
+	bSizer4->Fit( m_panel1 );
 	bSizer3->Add( m_panel1, 1, wxEXPAND | wxALL, 5 );
 	
 	wxBoxSizer* bSizer6;

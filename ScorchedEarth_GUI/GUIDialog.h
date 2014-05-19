@@ -8,14 +8,18 @@
 #ifndef __GUIDialog__
 #define __GUIDialog__
 
-#include <wx/panel.h>
+#include <wx/bitmap.h>
+#include <wx/image.h>
+#include <wx/icon.h>
+#include <wx/statbmp.h>
 #include <wx/gdicmn.h>
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
 #include <wx/string.h>
-#include <wx/scrolwin.h>
 #include <wx/sizer.h>
+#include <wx/panel.h>
+#include <wx/scrolwin.h>
 #include <wx/dialog.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -29,6 +33,7 @@ class GUIDialog : public wxDialog
 	
 	protected:
 		wxPanel* m_panel1;
+		wxStaticBitmap* top_image;
 		wxScrolledWindow* m_Canvas;
 		
 		// Virtual event handlers, overide them in your derived class
