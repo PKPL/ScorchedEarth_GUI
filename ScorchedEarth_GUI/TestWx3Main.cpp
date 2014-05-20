@@ -54,6 +54,7 @@ TestWx3Dialog::TestWx3Dialog(wxDialog *dlg)
     m_Canvas->SetBackgroundStyle(wxBG_STYLE_CUSTOM);
     Doc = new CDrawable();
     missile1 = NULL;
+    is2draw = FALSE;
 }
 
 TestWx3Dialog::~TestWx3Dialog()
@@ -82,8 +83,9 @@ void TestWx3Dialog::m_CanvasOnPaint( wxPaintEvent& event )
     wxBufferedPaintDC DC(m_Canvas);
     int CWidth,CHeight;
     m_Canvas->GetSize(&CWidth,&CHeight);
-    Doc->Draw(DC, CWidth, CHeight);
+    Doc->Draw(DC);
     if(missile1!=NULL)Doc->DrawShot(DC, CWidth, CHeight, missile1);
+    if(is2draw)Doc->drawLineTest(DC, *wxRED);
 }
 
 void TestWx3Dialog::m_button3OnButtonClick( wxCommandEvent& event )
@@ -108,4 +110,8 @@ void TestWx3Dialog::m_button5OnButtonClick( wxCommandEvent& event )
     m_Canvas->Refresh();
 }
 
-
+void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
+{
+    this->is2draw = TRUE;
+    m_Canvas->Refresh();
+}

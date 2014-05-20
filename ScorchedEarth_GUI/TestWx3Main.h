@@ -22,6 +22,7 @@ class TestWx3Dialog: public GUIDialog
 {
         CDrawable* Doc;
         missile_data* missile1;
+        bool is2draw;
     public:
         TestWx3Dialog(wxDialog *dlg);
         ~TestWx3Dialog();

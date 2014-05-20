@@ -11,7 +11,7 @@ class CDrawable
         double x1, y1;
         CDrawable();
         virtual ~CDrawable();
-        void Draw(wxBufferedPaintDC& DC, int CWidth, int CHeight);
+        void Draw(wxBufferedPaintDC& DC);
         void DrawShot(wxBufferedPaintDC& DC, int CWidth, int CHeight, missile_data* m);
         void drawLineTest(wxBufferedPaintDC& DC, wxColor C);
     protected:
