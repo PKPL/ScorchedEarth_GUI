@@ -55,6 +55,7 @@ TestWx3Dialog::TestWx3Dialog(wxDialog *dlg)
     : GUIDialog(dlg)
 {
     m_Canvas->SetBackgroundStyle(wxBG_STYLE_CUSTOM);
+    wxInitAllImageHandlers();
     Doc = new CDrawable();
     missile1 = NULL;
     is2draw = FALSE;

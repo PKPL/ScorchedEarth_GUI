@@ -116,6 +116,16 @@ void test_maps_create(int map_layout [MAX_X][MAX_Y])
 
 void create_mountain_map(int map_layout[MAX_X][MAX_Y])
 {
+
+    int i, j;
+    for(i = 0; i < MAX_X; i++)
+    {
+        for(j = 0; j < MAX_Y; j++)
+        {
+            map_layout[i][j] = 0;
+        }
+    }
+
     int x, y;
     bool checkInteger = true;
     for (x = 0; x < MAX_X; x++)
@@ -146,7 +156,7 @@ void create_mountain_map(int map_layout[MAX_X][MAX_Y])
         height_offset_high = 0;
         height_offset_low = 0;
         new_rnd_seed();
-        system("cls");
+        //system("cls");
         printf("Map is being randomly generated. This may take a while sorry =]");
 
         do
@@ -353,13 +363,8 @@ void new_rnd_seed()
 
 void print_loading_status(int x)
 {
-    system("cls");
-    printf("Loading: %d%%", x);
-    if (x == 100)
-    {
-        printf("\n\n\nPlease wait while the map is drawn. Thank you! :D");
-        Sleep(1500);
-    }
+    //system("cls");
+
 }
 
 
