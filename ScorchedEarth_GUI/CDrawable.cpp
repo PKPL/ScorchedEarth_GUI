@@ -17,8 +17,9 @@ void CDrawable::Draw(wxBufferedPaintDC & DC, int CWidth, int CHeight){
 	DC.SetBrush(Brush);
 	DC.SetBackground(Brush);
 	DC.Clear();
-	drawTank(DC, 50, 300, *wxRED, angle1);
-	drawTank(DC, 450, 300, *wxBLUE, angle2);
+	//drawTank(DC, 50, 300, *wxRED, angle1);
+	//drawTank(DC, 450, 300, *wxBLUE, angle2);
+	drawLineTest(DC, *wxRED);
 }
 
 void CDrawable::DrawShot(wxBufferedPaintDC & DC, int CWidth, int CHeight, missile_data* m){
@@ -28,6 +29,17 @@ void CDrawable::DrawShot(wxBufferedPaintDC & DC, int CWidth, int CHeight, missil
        p[i].y = m->y_vector_coordinate[i]*10;
     }
     DC.DrawLines(100, p);
+}
+
+void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C){
+       wxBrush B;
+       wxPen P;
+       B.SetColour(*wxWHITE);
+       DC.SetBrush(B);
+       P.SetColour(C);
+       P.SetWidth(3);
+       DC.SetPen(P);
+       DC.DrawLine(wxPoint(0, 0),wxPoint(600, 400));
 }
 
 void CDrawable::drawTank(wxBufferedPaintDC& DC, int X, int Y, wxColor C, double angle){

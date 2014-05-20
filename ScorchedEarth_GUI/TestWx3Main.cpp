@@ -48,7 +48,7 @@ wxString wxbuildinfo(wxbuildinfoformat format)
     return wxbuild;
 }
 
-
+int map_layout[100][80] = {{0}};
 
 TestWx3Dialog::TestWx3Dialog(wxDialog *dlg)
     : GUIDialog(dlg)
@@ -112,7 +112,6 @@ void TestWx3Dialog::m_button5OnButtonClick( wxCommandEvent& event )
 
 void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
 {
-    int map_layout[100][80] = {{0}};
     create_mountain_map(map_layout);
     int borderX[100];
     int x, y;
@@ -130,9 +129,14 @@ void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
 
     for (x = 0; x < 100; x++)
     {
+        if (x > 99)
+        {
+            Close();
+        }
         wxString lelel = ( wxT(""));
         lelel.append(wxString::Format(wxT("(%d, %d)"), (int)x, (int)borderX[x]));
         m_textTest->AppendText(lelel);
+
     }
     //It verifies correctly so borderX holds the border line, How to use:
     //Like a maths function, consider f(x) = borderX[X]

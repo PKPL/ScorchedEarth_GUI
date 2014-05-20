@@ -13,6 +13,7 @@ class CDrawable
         virtual ~CDrawable();
         void Draw(wxBufferedPaintDC& DC, int CWidth, int CHeight);
         void DrawShot(wxBufferedPaintDC& DC, int CWidth, int CHeight, missile_data* m);
+        void drawLineTest(wxBufferedPaintDC& DC, wxColor C);
     protected:
     private:
         void drawTank(wxBufferedPaintDC& DC, int X, int Y, wxColor C, double angle);
