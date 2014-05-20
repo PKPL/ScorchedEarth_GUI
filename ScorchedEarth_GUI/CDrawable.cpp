@@ -14,9 +14,6 @@ CDrawable::~CDrawable()
     //dtor
 }
 
-int map_layout[100][80] = {{0}};
-int borderX[100];
-
 void CDrawable::Draw(wxBufferedPaintDC & DC)
 {
     wxBrush Brush(*wxWHITE);
@@ -39,45 +36,7 @@ void CDrawable::DrawShot(wxBufferedPaintDC & DC, int CWidth, int CHeight, missil
     DC.DrawLines(100, p);
 }
 
-//void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
-//{
-//    create_mountain_map(map_layout);
-//    int x, y;
-//    for (x = 0; x < 100; x++)
-//    {
-//        for (y = 0; y < 80; y++)
-//        {
-//            if (map_layout[x][y] == 1 && map_layout[x][y+1] != 1)
-//            {
-//                borderX[x] = y;
-//                y = 80;
-//            }
-//        }
-//    }
-//
-//    for (x = 0; x < 100; x++)
-//    {
-//        if (x > 99)
-//        {
-//            Close();
-//        }
-//        wxString lelel = ( wxT(""));
-//        lelel.append(wxString::Format(wxT("(%d, %d)"), (int)x, (int)borderX[x]));
-//        m_textTest->AppendText(lelel);
-//
-//    }
-////    wxBufferedPaintDC DC(m_Canvas);
-////    CDrawable::drawLineTest(DC, *wxRED);
-//    //It verifies correctly so borderX holds the border line, How to use:
-//    //Like a maths function, consider f(x) = borderX[X]
-//    // If you want to know the border value of the terrain on X = 3: f(3) = y3, which means, borderX[3] retrieves the Y3 value.
-//    //The points it displays when you click the button are the border points for each X in the map generated. format: (x, y)
-//
-//
-//}
-
-
-void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C)
+void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[100][80], int borderX[100])
 {
     wxBrush B;
     wxPen P;

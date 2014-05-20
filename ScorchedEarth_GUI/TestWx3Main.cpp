@@ -18,6 +18,9 @@
 #include "TestWx3Main.h"
 #include "maps_create.h"
 
+int map_layout[100][80] = {{0}};
+int borderX[100];
+
 //helper functions
 enum wxbuildinfoformat
 {
@@ -85,7 +88,7 @@ void TestWx3Dialog::m_CanvasOnPaint( wxPaintEvent& event )
     m_Canvas->GetSize(&CWidth,&CHeight);
     Doc->Draw(DC);
     if(missile1!=NULL)Doc->DrawShot(DC, CWidth, CHeight, missile1);
-    if(is2draw)Doc->drawLineTest(DC, *wxRED);
+    if(is2draw)Doc->drawLineTest(DC, *wxRED, map_layout, borderX);
 }
 
 void TestWx3Dialog::m_button3OnButtonClick( wxCommandEvent& event )
@@ -113,5 +116,22 @@ void TestWx3Dialog::m_button5OnButtonClick( wxCommandEvent& event )
 void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
 {
     this->is2draw = TRUE;
+
+    create_mountain_map(map_layout);
+
+    int x, y;
+    for (x = 0; x < 100; x++)
+    {
+        for (y = 0; y < 80; y++)
+        {
+            if (map_layout[x][y] == 1 && map_layout[x][y+1] != 1)
+            {
+                borderX[x] = y;
+                y = 80;
+            }
+        }
+    }
+
+
     m_Canvas->Refresh();
 }
