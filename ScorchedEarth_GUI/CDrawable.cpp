@@ -3,7 +3,7 @@
 #include "maps_create.h"
 #include "maps.h"
 
-float map_ratio = 5;
+int map_ratio = 7;
 CDrawable::CDrawable()
 {
     angle1 = M_PI/4;
@@ -48,10 +48,24 @@ void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[10
     DC.SetPen(P);
     //DC.DrawLine(wxPoint(0, 0),wxPoint(600, 400));
     //DC.DrawLine(wxPoint(0*map_ratio, 0*map_ratio), wxPoint(100, 100));
-    int x;
+    int x, y;
     for (x = 0; x < 100; x++)
     {
         DC.DrawLine(wxPoint(x*map_ratio, (79 - borderX[x])*map_ratio), wxPoint((x+1)*map_ratio, (79 - borderX[x+1])*map_ratio));
+    }
+
+    for (x = 0; x < 100; x++)
+    {
+        for (y = 0; y < 80; y++)
+        {
+            if (borderX[x] == (y+1))
+            {
+//                P.SetColour(C);
+//                P.SetWidth(9);
+//                DC.SetPen(P);
+                DC.DrawLine(wxPoint(x*map_ratio, (79 - 0)*map_ratio), wxPoint(x*map_ratio, (79 - y)*map_ratio));
+            }
+        }
     }
 }
 

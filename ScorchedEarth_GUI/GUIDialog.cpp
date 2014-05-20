@@ -46,10 +46,10 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxBoxSizer* bSizer6;
 	bSizer6 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_Canvas = new wxScrolledWindow( this, wxID_ANY, wxDefaultPosition, wxSize( 500,400 ), wxHSCROLL|wxVSCROLL );
+	m_Canvas = new wxScrolledWindow( this, wxID_ANY, wxDefaultPosition, wxSize( 700,560 ), wxHSCROLL|wxVSCROLL );
 	m_Canvas->SetScrollRate( 5, 5 );
-	m_Canvas->SetMinSize( wxSize( 500,400 ) );
-	m_Canvas->SetMaxSize( wxSize( 500,400 ) );
+	m_Canvas->SetMinSize( wxSize( 700,560 ) );
+	m_Canvas->SetMaxSize( wxSize( 700,560 ) );
 
 	bSizer6->Add( m_Canvas, 0, wxALL, 5 );
 

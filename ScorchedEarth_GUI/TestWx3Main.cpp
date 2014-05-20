@@ -133,6 +133,5 @@ void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
         }
     }
 
-
     m_Canvas->Refresh();
 }
