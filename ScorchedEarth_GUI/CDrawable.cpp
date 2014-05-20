@@ -4,6 +4,9 @@
 #include "maps.h"
 
 int map_ratio = 7;
+wxList *map_list = new wxList();
+wxPoint *win1;
+
 CDrawable::CDrawable()
 {
     angle1 = M_PI/4;
@@ -49,10 +52,14 @@ void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[10
     //DC.DrawLine(wxPoint(0, 0),wxPoint(600, 400));
     //DC.DrawLine(wxPoint(0*map_ratio, 0*map_ratio), wxPoint(100, 100));
     int x, y;
-    for (x = 0; x < 100; x++)
-    {
-        DC.DrawLine(wxPoint(x*map_ratio, (79 - borderX[x])*map_ratio), wxPoint((x+1)*map_ratio, (79 - borderX[x+1])*map_ratio));
-    }
+//    for (x = 0; x < 100; x++)
+//    {
+//        DC.DrawLine(wxPoint(x*map_ratio, (79 - borderX[x])*map_ratio), wxPoint((x+1)*map_ratio, (79 - borderX[x+1])*map_ratio));
+//    }
+
+    map_list = new wxList();
+    wxPoint *win1 = new wxPoint(0*map_ratio,(79)*map_ratio);
+    map_list->Append((wxObject *)win1);
 
     for (x = 0; x < 100; x++)
     {
@@ -60,13 +67,21 @@ void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[10
         {
             if (borderX[x] == (y))
             {
-//                P.SetColour(C);
-//                P.SetWidth(9);
-//                DC.SetPen(P);
-                DC.DrawLine(wxPoint(x*map_ratio, (79 - 0)*map_ratio), wxPoint(x*map_ratio, (79 - y)*map_ratio));
+
+                wxPoint *win1 = new wxPoint(x*map_ratio,(79 - y)*map_ratio);
+                map_list->Append((wxObject *)win1);
             }
         }
     }
+
+    win1 = new wxPoint(100*map_ratio,(79)*map_ratio);
+    map_list->Append((wxObject *)win1);
+
+
+    B.SetColour(*wxRED);
+    DC.SetBrush(B);
+    DC.DrawPolygon(map_list);
+
 }
 
 void CDrawable::drawTank(wxBufferedPaintDC& DC, int X, int Y, wxColor C, double angle)
