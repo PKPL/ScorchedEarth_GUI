@@ -20,7 +20,8 @@ CDrawable::~CDrawable()
 
 void CDrawable::Draw(wxBufferedPaintDC & DC)
 {
-    wxBrush Brush(*wxWHITE);
+    wxColor *ourSky = new wxColor(172,225,255,0);
+    wxBrush Brush(*ourSky);
     DC.SetBrush(Brush);
     DC.SetBackground(Brush);
     DC.Clear();
@@ -58,7 +59,7 @@ void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[10
 //    }
 
     map_list = new wxList();
-    wxPoint *win1 = new wxPoint(0*map_ratio,(79)*map_ratio);
+    wxPoint *win1 = new wxPoint(0*map_ratio,(80)*map_ratio);
     map_list->Append((wxObject *)win1);
 
     for (x = 0; x < 100; x++)
@@ -74,11 +75,11 @@ void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[10
         }
     }
 
-    win1 = new wxPoint(100*map_ratio,(79)*map_ratio);
+    win1 = new wxPoint(100*map_ratio,(80)*map_ratio);
     map_list->Append((wxObject *)win1);
 
 
-    B.SetColour(*wxRED);
+    B.SetColour(C);
     DC.SetBrush(B);
     DC.DrawPolygon(map_list);
 
