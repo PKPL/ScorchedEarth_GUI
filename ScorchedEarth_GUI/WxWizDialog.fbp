@@ -217,8 +217,8 @@
                                 <property name="permission">none</property>
                                 <object class="sizeritem" expanded="0">
                                     <property name="border">5</property>
-                                    <property name="flag">wxEXPAND | wxALL</property>
-                                    <property name="proportion">4</property>
+                                    <property name="flag">wxALL</property>
+                                    <property name="proportion">0</property>
                                     <object class="wxScrolledWindow" expanded="0">
                                         <property name="bg"></property>
                                         <property name="context_help"></property>
@@ -228,8 +228,8 @@
                                         <property name="font"></property>
                                         <property name="hidden">0</property>
                                         <property name="id">wxID_ANY</property>
-                                        <property name="maximum_size"></property>
-                                        <property name="minimum_size">-1,-1</property>
+                                        <property name="maximum_size">600,400</property>
+                                        <property name="minimum_size">600,400</property>
                                         <property name="name">m_Canvas</property>
                                         <property name="permission">protected</property>
                                         <property name="pos"></property>

@@ -48,7 +48,10 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	
 	m_Canvas = new wxScrolledWindow( this, wxID_ANY, wxDefaultPosition, wxSize( 600,400 ), wxHSCROLL|wxVSCROLL );
 	m_Canvas->SetScrollRate( 5, 5 );
-	bSizer6->Add( m_Canvas, 4, wxEXPAND | wxALL, 5 );
+	m_Canvas->SetMinSize( wxSize( 600,400 ) );
+	m_Canvas->SetMaxSize( wxSize( 600,400 ) );
+	
+	bSizer6->Add( m_Canvas, 0, wxALL, 5 );
 	
 	m_button2 = new wxButton( this, wxID_ANY, wxT("CreateMapTest"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer6->Add( m_button2, 0, wxALL, 5 );
