@@ -17,6 +17,7 @@ class CDrawable
     protected:
     private:
         void drawTank(wxBufferedPaintDC& DC, int X, int Y, wxColor C, double angle);
+        virtual void m_button2OnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 };
 
 #endif // CDRAWABLE_H
