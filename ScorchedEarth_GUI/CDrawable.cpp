@@ -58,7 +58,7 @@ void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[10
     {
         for (y = 0; y < 80; y++)
         {
-            if (borderX[x] == (y+1))
+            if (borderX[x] == (y))
             {
 //                P.SetColour(C);
 //                P.SetWidth(9);
