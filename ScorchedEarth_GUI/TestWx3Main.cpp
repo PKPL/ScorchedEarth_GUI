@@ -245,6 +245,11 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
                         borderX[x] = y;
                         y = 80;
                     }
+                    else if(y == 0 && map_layout[x][y] == 0)
+                    {
+                        borderX[x] = y;
+                        y = 80;
+                    }
                 }
             }
             flag=1;
