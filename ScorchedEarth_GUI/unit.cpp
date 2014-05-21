@@ -10,4 +10,5 @@ void unit_func(unit *unit_set)
     //Setting hp and points
     unit_set->points = 0;
     unit_set->hp = 100;
+    unit_set->armor = 100;
 }

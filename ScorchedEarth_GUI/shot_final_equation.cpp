@@ -19,6 +19,7 @@ missile_data* initializeMissile(int x_coord, int y_coord) { //Initializes missil
     light_missile->shot_angle = 0;
     light_missile->x_turret_position = x_coord;
     light_missile->y_turret_position = y_coord; //Notice that, for testing, we're drawing the curve maintaining coordinates of the cartesian system, and then we simply print the matrix upside-down.
+    light_missile->unit_damage = 50;
     for (i = 0; i < VECTOR_LENGTH; i++) {
         light_missile->x_vector_velocity[i] = 0;
         light_missile->y_vector_velocity[i] = 0;
@@ -77,12 +78,23 @@ void yVelocityFormula (missile_data *m) { //Calculates y component of velocity a
 void xCoordinate (missile_data *m, float wf) { //Calculates x coordinate against time and stores the values in a vector
     const float b = 0.1; // kg/s
     int x0, i;
-    float t;
+    float t, temp;
     float velocity_x_0;
     velocity_x_0 = m->initial_velocity * cosDegrees(m->shot_angle);
     x0 = m->x_turret_position;
     for (t = 0, i = 0; t < SHOT_TIME; t += 0.02) { //As for velocity, we're calculating coordinates every 0.02 seconds
-        m->x_vector_coordinate[i] = x0 + ((wf / b) * t) + (m->weight / b) * (velocity_x_0 - wf / b) * (1 - exp( - (b / m->weight) * t ));
+        temp = x0 + ((wf / b) * t) + (m->weight / b) * (velocity_x_0 - wf / b) * (1 - exp( - (b / m->weight) * t ));
+        switch (selected_level.edge) {
+            case EDGE_NO:
+                m->x_vector_coordinate[i] = temp;
+                break;
+            case EDGE_BOUNCE:
+                m->x_vector_coordinate[i] = bounce(temp);
+                break;
+            case EDGE_CONTINUE:
+                m->x_vector_coordinate[i] = continuous(temp);
+                break;
+        }
         i++; //This index allows "for cycle" to break if number of calculations outgoes defined vector length
         if (i >= VECTOR_LENGTH) break;
     }
@@ -106,6 +118,28 @@ void yCoordinate (missile_data *m) { //Calculates y coordinate against time and 
 void shotFunction (missile_data *m, float wf) { //Puts together coordinates calculations and velocities calculations
     xVelocityFormula(m, wf);
     yVelocityFormula(m);
-    xCoordinate(m, wf);
     yCoordinate(m);
+    xCoordinate(m, wf);
+}
+
+float bounce (float coord) {
+    if (coord < 0) {
+        if (abs(coord) < MAX_X) return abs(coord);
+        else return bounce(abs(coord));
+    }
+    else if (coord > MAX_X) {
+        if ((MAX_X - (coord - MAX_X)) > 0) return MAX_X - (coord - MAX_X);
+        else return bounce(-(MAX_X - (coord - MAX_X)));
+    }
+    else return coord;
+}
+
+float continuous (float coord) {
+    if (coord < 0) {
+        return continuous(coord + MAX_X);
+    }
+    else if (coord > MAX_X) {
+        return continuous(coord - MAX_X);
+    }
+    else return coord;
 }

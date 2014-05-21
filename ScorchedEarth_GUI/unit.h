@@ -14,6 +14,7 @@ int x;
 int y;
 int points;
 int hp;
+int armor;
 }unit;
 
 // Included files
