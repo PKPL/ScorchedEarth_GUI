@@ -49,11 +49,11 @@ bool raycast(unit from, int angle,  int map_layout[MAX_X][MAX_Y])
 }
 
 
-void ai(unit local_bot, int map_layout[MAX_X][MAX_Y])
+void ai(unit local_bot, int map_layout[MAX_X][MAX_Y],int &temp_angle, int &temp_power)
 {
 
-    if(selected_level.level_ai == AI_EASY)ai_easy(local_bot, map_layout);
-    else if(selected_level.level_ai == AI_MEDIUM)ai_medium(local_bot, map_layout);
-    else if(selected_level.level_ai == AI_HARD)ai_hard(local_bot, map_layout);
+    if(selected_level.level_ai == AI_EASY)ai_easy(local_bot, map_layout, temp_angle, temp_power);
+    else if(selected_level.level_ai == AI_MEDIUM)ai_medium(local_bot, map_layout, temp_angle, temp_power);
+    else if(selected_level.level_ai == AI_HARD)ai_hard(local_bot, map_layout, temp_angle, temp_power);
 
 }

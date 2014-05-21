@@ -41,4 +41,5 @@ class TestWx3Dialog: public GUIDialog
 };
 
 void calculate_ray();
+bool psyhics_delay();
 #endif // TESTWX3MAIN_H

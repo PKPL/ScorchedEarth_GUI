@@ -19,7 +19,7 @@ void test_ai(); // function for agreagate testing
 float min_angle(unit local_bot);
 int find_random(int min_ang, int max_ang);
 bool raycast(unit from, int angle,  int map_layout[MAX_X][MAX_Y]);
-void ai(unit local_bot, int map_layout[MAX_X][MAX_Y]);
+void ai(unit local_bot, int map_layout[MAX_X][MAX_Y],int &temp_angle, int &temp_power);
 //int find_minimal_angle(unit local_bot, int map_layout[MAX_X][MAX_Y],int power);
 
 

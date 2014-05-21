@@ -23,6 +23,8 @@
 #include "unit.h"
 #include "drawing_units.h"
 #include "shot_formula.h"
+#include <time.h>
+
 
 int map_layout[100][80] = {{0}};
 int borderX[100];
@@ -32,6 +34,8 @@ float angle_drawing_distanse_floating = 10;
 int player_angle = 60;
 float player_power = 100;
 int actual_missile_position[2] = {(-5)};
+
+float psyhics_framerate = 20;
 
 unit player;
 unit bot;
@@ -112,7 +116,7 @@ void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
 {
     this->is2draw = TRUE;
 
-    choose_levels(1, 1);
+    choose_levels(2, 2);
     create_mountain_map(map_layout);
 
     unit_func(&player);
@@ -160,6 +164,12 @@ void TestWx3Dialog::key_function( wxKeyEvent& event)
         missile_data *missile;
         missile = initializeMissile(player.x, player.y);
         shoot_function(missile, player_power, player_angle, map_layout,false, wind_speed);
+
+        int temp_angle;
+        int temp_power;
+        missile = initializeMissile(bot.x, bot.y);
+        ai(bot,map_layout, temp_angle, temp_power); //Calc values
+        shoot_function(missile, 150, temp_angle, map_layout,true, wind_speed);
         break;
 
     }
@@ -220,6 +230,18 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
     /*Following cycle controls if the projectile hits anything before going out of the map; if so, functions checking what was hit are called*/
     for (i = 0; i < VECTOR_LENGTH; i++)
     {
+        if(missile->x_vector_coordinate[i] < -10)break;
+        else if(missile->x_vector_coordinate[i] > 90)break;
+        //wxMilliSleep(5);
+
+        for(;;)
+        {
+            actual_missile_position[0] = missile->x_vector_coordinate[i];
+            actual_missile_position[1] = missile->y_vector_coordinate[i];
+            m_Canvas->Refresh();
+            m_Canvas->Update();
+            if(psyhics_delay())break;
+        }
 
         switch (checkHit(i, missile, matrix))
         {
@@ -231,7 +253,7 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
         case 1:
             if(isBot)
 
-                break;
+            break;
         case 2: /*explosion: hit ground*/
 
             create_explosion(matrix,missile,i); //connection with drawing_destruction.c
@@ -246,7 +268,8 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
                         borderX[x] = y;
                         y = 80;
                     }
-                    else if(y == 0 && map_layout[x][y] == 0)
+
+          else if(y == 0 && map_layout[x][y] == 0)
                     {
                         borderX[x] = y;
                         y = 80;
@@ -270,11 +293,8 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
             break;
 
         case 4:
-            actual_missile_position[0] = missile->x_vector_coordinate[i];
-            actual_missile_position[1] = missile->y_vector_coordinate[i];
-            m_Canvas->Refresh();
-            m_Canvas->Update();
-            wxMilliSleep(1);
+
+            //wxMilliSleep(5);
             break;
         case 5:
             hit_armor(matrix, missile->x_vector_coordinate[i], missile->y_vector_coordinate[i], isBot);
@@ -286,6 +306,37 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
     }
 
 }
+
+bool psyhics_delay()
+{
+
+    static clock_t first_timer = clock();
+    static clock_t second_timer = clock();
+    float diff;
+
+    if(first_timer == 0)
+    {
+        first_timer = clock();
+        second_timer = clock();
+    }
+
+    static float reverse_time = (1.0/psyhics_framerate) * 100;
+
+    second_timer = clock();
+    diff = ((second_timer - first_timer)*1000)/CLOCKS_PER_SEC;
+
+    if(diff >= reverse_time)
+    {
+         first_timer = 0;
+         second_timer = 0;
+         return true;
+    }
+    return false;
+
+
+}
+
+
 
 
 

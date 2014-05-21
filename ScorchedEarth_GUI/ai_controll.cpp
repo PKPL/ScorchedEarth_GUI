@@ -11,7 +11,7 @@
 static float medium_dec_range = 10;
 int ai_angle = 180;
 
-void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y])
+void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y],int &temp_angle, int &temp_power)
 {
 
     int mini_angle = min_angle(local_bot);//searching for minimal angle
@@ -37,15 +37,16 @@ void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y])
     //testShot(ENEMY, ai_shoot_power, ai_shoot_angle, local_bot.x, local_bot.y);
 
 
-    missile_data *missile;
-    missile = initializeMissile(local_bot.x, local_bot.y);
-    playerShot(missile, ai_shoot_power, ai_shoot_angle, map_layout,false, wind_speed);
+
+    temp_angle = ai_shoot_angle;
+    temp_power = ai_shoot_power;
+
 
 
 }
 
 
-void ai_medium(unit local_bot, int map_layout[MAX_X][MAX_Y])
+void ai_medium(unit local_bot, int map_layout[MAX_X][MAX_Y],int &temp_angle, int &temp_power)
 {
 
 int power;
@@ -60,14 +61,13 @@ if(ai_angle <= 50)
 {
     gotoxy(10,40);
     printf("EASY MODE ACTIVATED");
-    ai_easy(local_bot, map_layout);
+    ai_easy(local_bot, map_layout, temp_angle, temp_power);
     return;
 }
 power = AIcheck (local_bot.x, local_bot.y, 1.8, ai_angle, player.x, player.y, wind_speed);
 
 }
-missile_data *missile;
-    missile = initializeMissile(local_bot.x, local_bot.y);
+
 
 int rnd = find_random(-4,5);
 
@@ -75,10 +75,11 @@ int rnd = find_random(-4,5);
 
 
 
-    playerShot(missile, (power + rnd) * 4, 180 - ai_angle, map_layout,false, wind_speed);
+    temp_angle = 180 - ai_angle;
+    temp_power = (power + rnd) * 4;
 }
 
-void ai_hard(unit local_bot, int map_layout[MAX_X][MAX_Y])
+void ai_hard(unit local_bot, int map_layout[MAX_X][MAX_Y],int &temp_angle, int &temp_power)
 {
 
 int power;
@@ -93,19 +94,19 @@ if(ai_angle <= 50)
 {
     gotoxy(10,40);
     printf("EASY MODE ACTIVATED");
-    ai_easy(local_bot, map_layout);
+    ai_easy(local_bot, map_layout, temp_angle, temp_power);
     return;
 }
 power = AIcheck (local_bot.x, local_bot.y, 1.8, ai_angle, player.x, player.y, wind_speed);
 
 
 }
-missile_data *missile;
-    missile = initializeMissile(local_bot.x, local_bot.y);
+
 
 int rnd = find_random(-3,4);
 
-    playerShot(missile, (power + rnd) * 4, 180 - ai_angle, map_layout,false, wind_speed);
+    temp_angle = 180 - ai_angle;
+    temp_power = (power + rnd) * 4;
 }
 
 

@@ -11,9 +11,9 @@
 #include "defines.h"
 
 extern int ai_angle;
-void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y]);
-void ai_medium(unit local_bot, int map_layout[MAX_X][MAX_Y]);
-void ai_hard(unit local_bot, int map_layout[MAX_X][MAX_Y]);
+void ai_easy(unit local_bot, int map_layout[MAX_X][MAX_Y],int &temp_angle, int &temp_power);
+void ai_medium(unit local_bot, int map_layout[MAX_X][MAX_Y],int &temp_angle, int &temp_power);
+void ai_hard(unit local_bot, int map_layout[MAX_X][MAX_Y],int &temp_angle, int &temp_power);
 
 #endif // __AI_MEDIUM_H__
 
