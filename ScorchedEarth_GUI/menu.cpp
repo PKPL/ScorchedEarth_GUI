@@ -47,7 +47,7 @@ void menu() // function for agreagate testing
         }
     }
     while (selectedOption < 1 || selectedOption > 4 || control == 0);
-    menu_reaction(selectedOption, map_layout);
+    //menu_reaction(selectedOption, map_layout);
 }
 
 //void menu_reaction(int SelectedOption, int map_layout [MAX_X][MAX_Y])// undone
