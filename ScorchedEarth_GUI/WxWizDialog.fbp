@@ -37,7 +37,7 @@
             <property name="minimum_size"></property>
             <property name="name">GUIDialog</property>
             <property name="pos"></property>
-            <property name="size">1280,720</property>
+            <property name="size">936,720</property>
             <property name="style">wxDEFAULT_DIALOG_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX</property>
             <property name="subclass"></property>
             <property name="title">wxWidgets Application Template</property>
@@ -87,7 +87,7 @@
                 <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
                     <property name="flag">wxEXPAND</property>
-                    <property name="proportion">1</property>
+                    <property name="proportion">2</property>
                     <object class="wxBoxSizer" expanded="1">
                         <property name="minimum_size"></property>
                         <property name="name">bSizer3</property>
@@ -96,7 +96,7 @@
                         <object class="sizeritem" expanded="1">
                             <property name="border">5</property>
                             <property name="flag">wxEXPAND | wxALL</property>
-                            <property name="proportion">1</property>
+                            <property name="proportion">0</property>
                             <object class="wxPanel" expanded="1">
                                 <property name="bg"></property>
                                 <property name="context_help"></property>
@@ -151,11 +151,11 @@
                                     <property name="permission">none</property>
                                     <object class="sizeritem" expanded="1">
                                         <property name="border">5</property>
-                                        <property name="flag">wxALL</property>
+                                        <property name="flag">wxALL|wxALIGN_CENTER_HORIZONTAL</property>
                                         <property name="proportion">0</property>
                                         <object class="wxStaticBitmap" expanded="1">
                                             <property name="bg"></property>
-                                            <property name="bitmap">Imgs/temp_logo.bmp; Load From File</property>
+                                            <property name="bitmap">Imgs/logo_fit.bmp; Load From File</property>
                                             <property name="context_help"></property>
                                             <property name="context_menu">1</property>
                                             <property name="enabled">1</property>
@@ -164,11 +164,11 @@
                                             <property name="hidden">0</property>
                                             <property name="id">wxID_ANY</property>
                                             <property name="maximum_size">-1,-1</property>
-                                            <property name="minimum_size">1250,200</property>
+                                            <property name="minimum_size">-1,-1</property>
                                             <property name="name">top_image</property>
                                             <property name="permission">protected</property>
                                             <property name="pos">-1,-1</property>
-                                            <property name="size">1250,95</property>
+                                            <property name="size">-1,-1</property>
                                             <property name="subclass"></property>
                                             <property name="tooltip"></property>
                                             <property name="validator_data_type"></property>

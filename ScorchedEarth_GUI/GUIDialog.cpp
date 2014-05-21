@@ -33,15 +33,13 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxBoxSizer* bSizer4;
 	bSizer4 = new wxBoxSizer( wxVERTICAL );
 	
-	top_image = new wxStaticBitmap( m_panel1, wxID_ANY, wxBitmap( wxT("Imgs/temp_logo.bmp"), wxBITMAP_TYPE_ANY ), wxPoint( -1,-1 ), wxSize( 1250,95 ), 0 );
-	top_image->SetMinSize( wxSize( 1250,200 ) );
-	
-	bSizer4->Add( top_image, 0, wxALL, 5 );
+	top_image = new wxStaticBitmap( m_panel1, wxID_ANY, wxBitmap( wxT("Imgs/logo_fit.bmp"), wxBITMAP_TYPE_ANY ), wxPoint( -1,-1 ), wxSize( -1,-1 ), 0 );
+	bSizer4->Add( top_image, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
 	m_panel1->SetSizer( bSizer4 );
 	m_panel1->Layout();
 	bSizer4->Fit( m_panel1 );
-	bSizer3->Add( m_panel1, 1, wxEXPAND | wxALL, 5 );
+	bSizer3->Add( m_panel1, 0, wxEXPAND | wxALL, 5 );
 	
 	wxBoxSizer* bSizer6;
 	bSizer6 = new wxBoxSizer( wxHORIZONTAL );
@@ -61,7 +59,7 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	
 	bSizer3->Add( bSizer6, 5, wxEXPAND, 5 );
 	
-	bSizer1->Add( bSizer3, 1, wxEXPAND, 5 );
+	bSizer1->Add( bSizer3, 2, wxEXPAND, 5 );
 	
 	this->SetSizer( bSizer1 );
 	this->Layout();
