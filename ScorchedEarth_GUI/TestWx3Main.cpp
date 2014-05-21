@@ -17,6 +17,8 @@
 
 #include "TestWx3Main.h"
 #include "maps_create.h"
+#include "drawing_shots.h"
+#include "shot_formula.h"
 #include "levels.h"
 #include "unit.h"
 #include "drawing_units.h"
@@ -165,6 +167,7 @@ void TestWx3Dialog::key_function( wxKeyEvent& event)
     m_Canvas->Refresh();
 }
 
+
 void calculate_ray()
 {
 
@@ -176,5 +179,27 @@ void calculate_ray()
 
                     player_ray[2] = player.x + angle_drawing_distanse_floating*cos(player_angle * PI / 180.0 );
                     player_ray[3] = (player.y + angle_drawing_distanse_floating*sin(player_angle * PI / 180.0 ));
+
+void TestWx3Dialog::m_buttonExplodeOnButtonClick( wxCommandEvent& event )
+{
+    missile_data *missile;
+    missile = initializeMissile(20, 5);
+    playerShot(missile, 120, 60, map_layout,false, 0, 0);
+
+    int x, y;
+    for (x = 0; x < 100; x++)
+    {
+        for (y = 0; y < 80; y++)
+        {
+            if (map_layout[x][y] == 1 && map_layout[x][y+1] != 1)
+            {
+                borderX[x] = y;
+                y = 80;
+            }
+        }
+    }
+
+    m_Canvas->Refresh();
+
 
 }

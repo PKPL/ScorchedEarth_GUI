@@ -14,6 +14,9 @@ int checkHit (int i, missile_data *m,int matrix[MAX_X][MAX_Y]) {
         return 2;
     if (matrix[m->x_vector_coordinate[i]][m->y_vector_coordinate[i]] == 10 || matrix[m->x_vector_coordinate[i]][m->y_vector_coordinate[i]] == 20) //Projectile hits unit (either player's ones or enemy's ones)
         return 3;
+
+    if (matrix[m->x_vector_coordinate[i]][m->y_vector_coordinate[i]] == 4) return 5;
+
     return 4;
 }
 /*
