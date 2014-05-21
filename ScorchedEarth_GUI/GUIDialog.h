@@ -38,7 +38,7 @@ class GUIDialog : public wxDialog
 		wxStaticBitmap* top_image;
 		wxScrolledWindow* m_Canvas;
 		wxButton* m_button2;
-		wxTextCtrl* m_textTest;
+		//wxTextCtrl* m_textTest;
 
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }

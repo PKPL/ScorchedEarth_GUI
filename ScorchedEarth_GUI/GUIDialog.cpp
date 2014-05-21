@@ -56,8 +56,8 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_button2 = new wxButton( this, wxID_ANY, wxT("CreateMapTest"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer6->Add( m_button2, 0, wxALL, 5 );
 
-	m_textTest = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE );
-	bSizer6->Add( m_textTest, 0, wxALL, 5 );
+	//m_textTest = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE );
+	//bSizer6->Add( m_textTest, 0, wxALL, 5 );
 
 	bSizer3->Add( bSizer6, 5, wxEXPAND, 5 );
 
