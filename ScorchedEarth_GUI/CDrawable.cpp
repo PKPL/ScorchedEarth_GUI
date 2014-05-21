@@ -2,10 +2,15 @@
 #include "TestWx3Main.h"
 #include "maps_create.h"
 #include "maps.h"
+#include "unit.h"
 
 int map_ratio = 7;
 wxList *map_list = new wxList();
 wxPoint *win1;
+wxColor *player_color = new wxColor(45,190,15,0);
+wxColor *enemy_color = new wxColor(250,20,15,0);
+
+
 
 CDrawable::CDrawable()
 {
@@ -82,5 +87,13 @@ void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[10
     B.SetColour(C);
     DC.SetBrush(B);
     DC.DrawPolygon(map_list);
+
+    B.SetColour(*player_color);
+    DC.SetBrush(B);
+    DC.DrawCircle(wxPoint(player.x*map_ratio,(79-player.y)*map_ratio), 8);
+
+    B.SetColour(*enemy_color);
+    DC.SetBrush(B);
+    DC.DrawCircle(wxPoint(bot.x*map_ratio,(79-bot.y)*map_ratio), 8);
 
 }
