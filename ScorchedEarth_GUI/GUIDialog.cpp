@@ -73,6 +73,7 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( GUIDialog::OnClose ) );
 	m_Canvas->Connect( wxEVT_PAINT, wxPaintEventHandler( GUIDialog::m_CanvasOnPaint ), NULL, this );
 	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIDialog::m_button2OnButtonClick ), NULL, this );
+	m_buttonExplode->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIDialog::m_buttonExplodeOnButtonClick ), NULL, this );
 }
 
 GUIDialog::~GUIDialog()
@@ -81,5 +82,6 @@ GUIDialog::~GUIDialog()
 	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( GUIDialog::OnClose ) );
 	m_Canvas->Disconnect( wxEVT_PAINT, wxPaintEventHandler( GUIDialog::m_CanvasOnPaint ), NULL, this );
 	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIDialog::m_button2OnButtonClick ), NULL, this );
+	m_buttonExplode->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIDialog::m_buttonExplodeOnButtonClick ), NULL, this );
 	
 }

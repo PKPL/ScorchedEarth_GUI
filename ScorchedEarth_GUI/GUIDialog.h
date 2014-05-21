@@ -45,6 +45,7 @@ class GUIDialog : public wxDialog
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void m_CanvasOnPaint( wxPaintEvent& event ) { event.Skip(); }
 		virtual void m_button2OnButtonClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_buttonExplodeOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:

@@ -34,6 +34,5 @@ class TestWx3Dialog: public GUIDialog
 		virtual void m_button2OnButtonClick( wxCommandEvent& event );
 		virtual void m_buttonExplodeOnButtonClick( wxCommandEvent& event );
 
-
 };
 #endif // TESTWX3MAIN_H

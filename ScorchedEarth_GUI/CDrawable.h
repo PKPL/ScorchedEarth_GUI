@@ -17,6 +17,7 @@ class CDrawable
     protected:
     private:
         virtual void m_button2OnButtonClick( wxCommandEvent& event ) { event.Skip(); }
+        virtual void m_buttonExplodeOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 };
 
 #endif // CDRAWABLE_H
