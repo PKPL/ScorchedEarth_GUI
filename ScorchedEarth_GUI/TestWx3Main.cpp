@@ -184,6 +184,7 @@ void calculate_ray()
 
 void TestWx3Dialog::m_buttonExplodeOnButtonClick( wxCommandEvent& event )
 {
+
     missile_data *missile;
     missile = initializeMissile(20, 5);
     playerShot(missile, 120, 60, map_layout,false, 0);

@@ -36,7 +36,7 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
 
                     break;
             case 2: /*explosion: hit ground*/
-                    //create_explosion(matrix,missile,i); //connection with drawing_destruction.c
+                    create_explosion(matrix,missile,i); //connection with drawing_destruction.c
                     if(isBot)
 
 
