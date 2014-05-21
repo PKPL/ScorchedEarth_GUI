@@ -18,12 +18,14 @@
 #include "TestWx3App.h"
 #include "TestWx3Main.h"
 
+TestWx3Dialog* dlg;
+
 IMPLEMENT_APP(TestWx3App);
 
 bool TestWx3App::OnInit()
 {
 
-    TestWx3Dialog* dlg = new TestWx3Dialog(0L);
+    dlg = new TestWx3Dialog(0L);
 //    dlg->SetIcon(wxICON(aaaa)); // To Set App Icon
     dlg->Show();
     return true;

@@ -11,6 +11,7 @@ wxColor *player_color = new wxColor(45,190,15,0);
 wxColor *enemy_color = new wxColor(250,20,15,0);
 wxColor *turret_color = new wxColor(150,120,200,0);
 extern float player_ray[2];
+extern int actual_missile_position[2];
 
 
 
@@ -112,4 +113,5 @@ void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[10
     DC.SetBrush(B);
     DC.DrawCircle(wxPoint(bot.x*map_ratio,(79-bot.y)*map_ratio), 8);
 
+    DC.DrawCircle(wxPoint(actual_missile_position[0]*map_ratio,(79 - actual_missile_position[1])*map_ratio), 20);
 }

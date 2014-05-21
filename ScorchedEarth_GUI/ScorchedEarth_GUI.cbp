@@ -79,6 +79,20 @@
 		<Unit filename="TestWx3Main.cpp" />
 		<Unit filename="TestWx3Main.h" />
 		<Unit filename="WxWizDialog.fbp" />
+		<Unit filename="ai.cpp" />
+		<Unit filename="ai.h" />
+		<Unit filename="ai_controll.cpp" />
+		<Unit filename="ai_controll.h" />
+		<Unit filename="armor.cpp" />
+		<Unit filename="armor.h" />
+		<Unit filename="defines.h" />
+		<Unit filename="drawing.h" />
+		<Unit filename="drawing_destruction.cpp" />
+		<Unit filename="drawing_destruction.h" />
+		<Unit filename="drawing_maps.cpp" />
+		<Unit filename="drawing_maps.h" />
+		<Unit filename="drawing_shots.cpp" />
+		<Unit filename="drawing_shots.h" />
 		<Unit filename="drawing_units.cpp" />
 		<Unit filename="drawing_units.h" />
 		<Unit filename="levels.cpp" />
@@ -88,11 +102,19 @@
 		<Unit filename="maps.h" />
 		<Unit filename="maps_create.cpp" />
 		<Unit filename="maps_create.h" />
+		<Unit filename="menu.cpp" />
+		<Unit filename="menu.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
+		<Unit filename="shot.cpp" />
+		<Unit filename="shot.h" />
 		<Unit filename="shot_final_equation.cpp" />
 		<Unit filename="shot_final_equation.h" />
+		<Unit filename="shot_formula.cpp" />
+		<Unit filename="shot_formula.h" />
+		<Unit filename="shot_hit.cpp" />
+		<Unit filename="shot_hit.h" />
 		<Unit filename="unit.cpp" />
 		<Unit filename="unit.h" />
 		<Extensions>

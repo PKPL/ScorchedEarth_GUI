@@ -31,6 +31,7 @@ float angle_drawing_distanse = 10;
 float angle_drawing_distanse_floating = 10;
 int player_angle = 60;
 float player_power = 100;
+int actual_missile_position[2] = {(0)};
 
 unit player;
 unit bot;
@@ -158,7 +159,7 @@ void TestWx3Dialog::key_function( wxKeyEvent& event)
             case WXK_SPACE:
             missile_data *missile;
             missile = initializeMissile(player.x, player.y);
-            playerShot(missile, player_power, player_angle, map_layout,false, wind_speed);
+            shoot_function(missile, player_power, player_angle, map_layout,false, wind_speed);
             break;
 
         }
@@ -206,3 +207,57 @@ void TestWx3Dialog::m_buttonExplodeOnButtonClick( wxCommandEvent& event )
 
 
 }
+
+void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y], bool isBot, float some_wind_speed)
+{
+    int i, flag = 0;
+
+    setInitialVelocity(missile, initial_velocity/4);
+    setShootingAngle(missile, shooting_angle);
+
+    shotFunction(missile, windForce(some_wind_speed));
+
+    /*Following cycle controls if the projectile hits anything before going out of the map; if so, functions checking what was hit are called*/
+    for (i = 0; i < VECTOR_LENGTH; i++)
+        {
+
+        switch (checkHit(i, missile, matrix)) {
+
+//            case 0: create_arrow(i,matrix, missile);
+//                continue;
+
+
+            case 1: if(isBot)
+
+                    break;
+            case 2: /*explosion: hit ground*/
+                    create_explosion(matrix,missile,i); //connection with drawing_destruction.c
+                    if(isBot)
+
+
+                   // extra_explosion(missile); //you can find it in shot_hit.c
+                    flag=1;
+
+                    break;
+            case 3: /*explosion: hit unit*/
+                //Call function Destruction of Unit or similar. TODO
+                flag=1;
+                break;
+
+            case 4:
+                actual_missile_position[0] = missile->x_vector_coordinate[i];
+                actual_missile_position[1] = missile->y_vector_coordinate[i];
+                m_Canvas->Refresh();
+                wxMilliSleep(20);
+                break;
+            case 5:
+                hit_armor(matrix, missile->x_vector_coordinate[i], missile->y_vector_coordinate[i], isBot);
+                flag = 1;
+
+                break;
+        }
+        if ( flag == 1 ) break;
+    }
+
+}
+

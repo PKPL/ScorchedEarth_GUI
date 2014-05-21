@@ -7,13 +7,21 @@
 #include "maps_create.h"
 
 
+
+
+
+
+
+
 extern int ai_angle;
+extern int actual_missile_position[2];
 
 
 /* When a player shoots, the following function is called: it asks the player for all necessary data (shooting angle, initial velocity), then calculates the shot, checks the shot and, if possible, calls for explosion functions. */
 
 
-void playerShot(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y], bool isBot, float some_wind_speed) {
+void playerShot(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y], bool isBot, float some_wind_speed)
+{
 
 
     int i, flag = 0;
@@ -49,9 +57,11 @@ void playerShot(missile_data *missile, float initial_velocity, int shooting_angl
                 flag=1;
                 break;
 
-//            case 4:
-//                drawing_shots(i,matrix,missile);
-//                break;
+            case 4:
+                actual_missile_position[0] = missile->x_vector_coordinate[i];
+                actual_missile_position[1] = missile->y_vector_coordinate[i];
+
+                break;
             case 5:
                 hit_armor(matrix, missile->x_vector_coordinate[i], missile->y_vector_coordinate[i], isBot);
                 flag = 1;

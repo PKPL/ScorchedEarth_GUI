@@ -26,6 +26,7 @@ class TestWx3Dialog: public GUIDialog
     public:
         TestWx3Dialog(wxDialog *dlg);
         ~TestWx3Dialog();
+        void shoot_function(missile_data *missile, float initial_velocity, int shooting_angle, int matrix[MAX_X][MAX_Y], bool isBot, float some_wind_speed);
 
     private:
         virtual void OnClose(wxCloseEvent& event);
