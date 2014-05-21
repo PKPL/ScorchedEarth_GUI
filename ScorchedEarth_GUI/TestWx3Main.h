@@ -40,6 +40,6 @@ class TestWx3Dialog: public GUIDialog
 
 };
 
-void calculate_ray();
+void calculate_ray(bool isBot);
 bool psyhics_delay();
 #endif // TESTWX3MAIN_H

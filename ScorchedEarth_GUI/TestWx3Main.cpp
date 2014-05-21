@@ -29,9 +29,11 @@
 int map_layout[100][80] = {{0}};
 int borderX[100];
 float player_ray[4];
+float enemy_ray[2];
 float angle_drawing_distanse = 10;
 float angle_drawing_distanse_floating = 10;
 int player_angle = 60;
+int enemy_angle = 110;
 float player_power = 100;
 int actual_missile_position[2] = {(-5)};
 
@@ -140,7 +142,8 @@ void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
         }
     }
 
-    calculate_ray();
+    calculate_ray(false);
+    calculate_ray(true);
 
 
     m_Canvas->Refresh();
@@ -177,6 +180,9 @@ void TestWx3Dialog::key_function( wxKeyEvent& event)
         int temp_power;
         missile = initializeMissile(bot.x, bot.y);
         ai(bot,map_layout, temp_angle, temp_power); //Calc values
+        enemy_angle = temp_angle;
+        calculate_ray(true);
+
         shoot_function(missile, 150, temp_angle, map_layout,true, wind_speed);
         }
 
@@ -186,24 +192,37 @@ void TestWx3Dialog::key_function( wxKeyEvent& event)
 
     }
 
-    calculate_ray();
+    calculate_ray(false);
     m_Canvas->Refresh();
     }
 }
 
 
-void calculate_ray()
+void calculate_ray(bool isBot)
 {
 
-    angle_drawing_distanse = 10;
-    angle_drawing_distanse_floating = player_power/5.0;
+    angle_drawing_distanse = 5;
+    angle_drawing_distanse_floating = player_power/10.0;
 
-    player_ray[0] = player.x + angle_drawing_distanse*cos(player_angle * PI / 180.0 );
-    player_ray[1] = (player.y + angle_drawing_distanse*sin(player_angle * PI / 180.0 ));
+    if(!isBot)
+    {
 
-    player_ray[2] = player.x + angle_drawing_distanse_floating*cos(player_angle * PI / 180.0 );
-    player_ray[3] = (player.y + angle_drawing_distanse_floating*sin(player_angle * PI / 180.0 ));
+        player_ray[0] = player.x + angle_drawing_distanse*cos(player_angle * PI / 180.0 );
+        player_ray[1] = (player.y + angle_drawing_distanse*sin(player_angle * PI / 180.0 ));
+
+        player_ray[2] = player.x + angle_drawing_distanse_floating*cos(player_angle * PI / 180.0 );
+        player_ray[3] = (player.y + angle_drawing_distanse_floating*sin(player_angle * PI / 180.0 ));
+
+    }
+    else
+    {
+        enemy_ray[0] = bot.x + angle_drawing_distanse*cos(enemy_angle * PI / 180.0 );
+        enemy_ray[1] = (bot.y + angle_drawing_distanse*sin(enemy_angle * PI / 180.0 ));
+    }
+
 }
+
+
 
 
 void TestWx3Dialog::m_buttonExplodeOnButtonClick( wxCommandEvent& event )
@@ -271,6 +290,9 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
 
             create_explosion(matrix,missile,i); //connection with drawing_destruction.c
             falling(matrix);
+            calculate_ray(true);
+            calculate_ray(false);
+            m_Canvas->Refresh();
             int x, y;
             for (x = 0; x < 100; x++)
             {
