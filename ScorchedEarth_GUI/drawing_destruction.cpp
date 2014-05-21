@@ -173,6 +173,7 @@ void create_destruction(int map_layout [MAX_X][MAX_Y])
 
 void create_explosion(int map_layout[MAX_X][MAX_Y],missile_data *m,int number)
 {
+
     int x_pos = (int)m->x_vector_coordinate[number];
     int y_pos = (int)m->y_vector_coordinate[number];
 
@@ -210,13 +211,14 @@ void create_explosion(int map_layout[MAX_X][MAX_Y],missile_data *m,int number)
                         }
                     else if (h <= destruct_radius)
                     {
-                        if (bot.armor <= 0)
-                            bot.hp -= m->unit_damage;
-                        else if (bot.armor > 0) {
-                            bot.armor -= m->unit_damage;
-                            if (bot.armor < 0)
-                                bot.hp += bot.armor;
-                    }
+                        bot.hp = 0;
+//                        if (bot.armor <= 0)
+//                            bot.hp -= m->unit_damage;
+//                        else if (bot.armor > 0) {
+//                            bot.armor -= m->unit_damage;
+//                            if (bot.armor < 0)
+//                                bot.hp += bot.armor;
+//                    }
                 }
             }
         }

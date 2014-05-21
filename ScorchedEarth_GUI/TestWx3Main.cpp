@@ -35,7 +35,9 @@ int player_angle = 60;
 float player_power = 100;
 int actual_missile_position[2] = {(-5)};
 
-float psyhics_framerate = 20;
+float psyhics_framerate = 10;
+
+int isEND = 0;
 
 unit player;
 unit bot;
@@ -116,6 +118,7 @@ void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
 {
     this->is2draw = TRUE;
 
+    isEND = 0;
     choose_levels(2, 2);
     create_mountain_map(map_layout);
 
@@ -141,10 +144,13 @@ void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
 
 
     m_Canvas->Refresh();
+    m_Canvas->SetFocus();
 }
 
 void TestWx3Dialog::key_function( wxKeyEvent& event)
 {
+    if(isEND == 0)
+    {
 
     switch ( event.GetKeyCode() )
     {
@@ -164,18 +170,25 @@ void TestWx3Dialog::key_function( wxKeyEvent& event)
         missile_data *missile;
         missile = initializeMissile(player.x, player.y);
         shoot_function(missile, player_power, player_angle, map_layout,false, wind_speed);
-
+        if(bot.hp <= 0)isEND = 1;
+        else
+        {
         int temp_angle;
         int temp_power;
         missile = initializeMissile(bot.x, bot.y);
         ai(bot,map_layout, temp_angle, temp_power); //Calc values
         shoot_function(missile, 150, temp_angle, map_layout,true, wind_speed);
+        }
+
+
+        if(player.hp <= 0)isEND = 2;
         break;
 
     }
 
     calculate_ray();
     m_Canvas->Refresh();
+    }
 }
 
 
@@ -231,7 +244,7 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
     for (i = 0; i < VECTOR_LENGTH; i++)
     {
         if(missile->x_vector_coordinate[i] < -10)break;
-        else if(missile->x_vector_coordinate[i] > 90)break;
+        else if(missile->x_vector_coordinate[i] > 110)break;
         //wxMilliSleep(5);
 
         for(;;)
@@ -284,6 +297,7 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
 
 
                 // extra_explosion(missile); //you can find it in shot_hit.c
+
                 flag=1;
 
             break;

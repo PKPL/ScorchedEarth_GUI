@@ -12,6 +12,7 @@ wxColor *enemy_color = new wxColor(250,20,15,0);
 wxColor *turret_color = new wxColor(150,120,200,0);
 extern float player_ray[2];
 extern int actual_missile_position[2];
+extern int isEND;
 
 
 
@@ -51,6 +52,9 @@ void CDrawable::DrawShot(wxBufferedPaintDC & DC, int CWidth, int CHeight, missil
 
 void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[100][80], int borderX[100])
 {
+    if(isEND == 0)
+    {
+
     wxBrush B;
     wxPen P;
     B.SetColour(*wxWHITE);
@@ -115,4 +119,20 @@ void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[10
 
 
     DC.DrawCircle(wxPoint(actual_missile_position[0]*map_ratio,(79 - actual_missile_position[1])*map_ratio), 5);
+    }
+    else
+    {
+
+        if(isEND == 1)
+        {
+            //WIN
+            DC.DrawText(L"GAME OVER! You win!", 250, 100);
+        }
+        else if(isEND == 2)
+        {
+            //LOSE
+            DC.DrawText(L"GAME OVER! You lose!", 250, 100);
+        }
+
+    }
 }
