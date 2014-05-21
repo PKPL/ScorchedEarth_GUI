@@ -235,6 +235,7 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
         case 2: /*explosion: hit ground*/
 
             create_explosion(matrix,missile,i); //connection with drawing_destruction.c
+            falling(matrix);
             int x, y;
             for (x = 0; x < 100; x++)
             {
@@ -256,6 +257,8 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
             if(isBot)
             actual_missile_position[0] = -5;
             actual_missile_position[1] = -5;
+
+
 
                 // extra_explosion(missile); //you can find it in shot_hit.c
                 flag=1;
@@ -283,4 +286,6 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
     }
 
 }
+
+
 
