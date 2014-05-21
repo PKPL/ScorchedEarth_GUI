@@ -195,8 +195,7 @@ void create_explosion(int map_layout[MAX_X][MAX_Y],missile_data *m,int number)
                 if(h <= destruct_radius && map_layout[i][j] < 2)
                 {
                     map_layout[i][j] = 0;
-                    gotoxy(i,79 - j);
-                    printf(" ");
+
                 }
                 else
                 {

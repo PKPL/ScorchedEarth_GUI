@@ -113,5 +113,5 @@ void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[10
     DC.SetBrush(B);
     DC.DrawCircle(wxPoint(bot.x*map_ratio,(79-bot.y)*map_ratio), 8);
 
-    DC.DrawCircle(wxPoint(actual_missile_position[0]*map_ratio,(79 - actual_missile_position[1])*map_ratio), 20);
+    DC.DrawCircle(wxPoint(actual_missile_position[0]*map_ratio,(79 - actual_missile_position[1])*map_ratio), 5);
 }

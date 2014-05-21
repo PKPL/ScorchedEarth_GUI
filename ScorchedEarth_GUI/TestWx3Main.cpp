@@ -31,7 +31,7 @@ float angle_drawing_distanse = 10;
 float angle_drawing_distanse_floating = 10;
 int player_angle = 60;
 float player_power = 100;
-int actual_missile_position[2] = {(0)};
+int actual_missile_position[2] = {(-5)};
 
 unit player;
 unit bot;
@@ -143,26 +143,26 @@ void TestWx3Dialog::key_function( wxKeyEvent& event)
 {
 
     switch ( event.GetKeyCode() )
-        {
-            case WXK_LEFT:
-            player_angle++;
-            break;
-            case WXK_RIGHT:
-            player_angle--;
-            break;
-            case WXK_UP:
-            player_power++;
-            break;
-            case WXK_DOWN:
-            player_power--;
-            break;
-            case WXK_SPACE:
-            missile_data *missile;
-            missile = initializeMissile(player.x, player.y);
-            shoot_function(missile, player_power, player_angle, map_layout,false, wind_speed);
-            break;
+    {
+    case WXK_LEFT:
+        player_angle++;
+        break;
+    case WXK_RIGHT:
+        player_angle--;
+        break;
+    case WXK_UP:
+        player_power++;
+        break;
+    case WXK_DOWN:
+        player_power--;
+        break;
+    case WXK_SPACE:
+        missile_data *missile;
+        missile = initializeMissile(player.x, player.y);
+        shoot_function(missile, player_power, player_angle, map_layout,false, wind_speed);
+        break;
 
-        }
+    }
 
     calculate_ray();
     m_Canvas->Refresh();
@@ -172,14 +172,14 @@ void TestWx3Dialog::key_function( wxKeyEvent& event)
 void calculate_ray()
 {
 
-                    angle_drawing_distanse = 10;
-                    angle_drawing_distanse_floating = player_power/5.0;
+    angle_drawing_distanse = 10;
+    angle_drawing_distanse_floating = player_power/5.0;
 
-                    player_ray[0] = player.x + angle_drawing_distanse*cos(player_angle * PI / 180.0 );
-                    player_ray[1] = (player.y + angle_drawing_distanse*sin(player_angle * PI / 180.0 ));
+    player_ray[0] = player.x + angle_drawing_distanse*cos(player_angle * PI / 180.0 );
+    player_ray[1] = (player.y + angle_drawing_distanse*sin(player_angle * PI / 180.0 ));
 
-                    player_ray[2] = player.x + angle_drawing_distanse_floating*cos(player_angle * PI / 180.0 );
-                    player_ray[3] = (player.y + angle_drawing_distanse_floating*sin(player_angle * PI / 180.0 ));
+    player_ray[2] = player.x + angle_drawing_distanse_floating*cos(player_angle * PI / 180.0 );
+    player_ray[3] = (player.y + angle_drawing_distanse_floating*sin(player_angle * PI / 180.0 ));
 }
 
 
@@ -219,42 +219,60 @@ void TestWx3Dialog::shoot_function(missile_data *missile, float initial_velocity
 
     /*Following cycle controls if the projectile hits anything before going out of the map; if so, functions checking what was hit are called*/
     for (i = 0; i < VECTOR_LENGTH; i++)
-        {
+    {
 
-        switch (checkHit(i, missile, matrix)) {
+        switch (checkHit(i, missile, matrix))
+        {
 
 //            case 0: create_arrow(i,matrix, missile);
 //                continue;
 
 
-            case 1: if(isBot)
+        case 1:
+            if(isBot)
 
-                    break;
-            case 2: /*explosion: hit ground*/
-                    create_explosion(matrix,missile,i); //connection with drawing_destruction.c
-                    if(isBot)
+                break;
+        case 2: /*explosion: hit ground*/
 
+            create_explosion(matrix,missile,i); //connection with drawing_destruction.c
+            int x, y;
+            for (x = 0; x < 100; x++)
+            {
+                for (y = 0; y < 80; y++)
+                {
+                    if (map_layout[x][y] == 1 && map_layout[x][y+1] != 1)
+                    {
+                        borderX[x] = y;
+                        y = 80;
+                    }
+                }
+            }
+            flag=1;
+            if(isBot)
+            actual_missile_position[0] = -5;
+            actual_missile_position[1] = -5;
 
-                   // extra_explosion(missile); //you can find it in shot_hit.c
-                    flag=1;
-
-                    break;
-            case 3: /*explosion: hit unit*/
-                //Call function Destruction of Unit or similar. TODO
+                // extra_explosion(missile); //you can find it in shot_hit.c
                 flag=1;
-                break;
 
-            case 4:
-                actual_missile_position[0] = missile->x_vector_coordinate[i];
-                actual_missile_position[1] = missile->y_vector_coordinate[i];
-                m_Canvas->Refresh();
-                wxMilliSleep(20);
-                break;
-            case 5:
-                hit_armor(matrix, missile->x_vector_coordinate[i], missile->y_vector_coordinate[i], isBot);
-                flag = 1;
+            break;
+        case 3: /*explosion: hit unit*/
+            //Call function Destruction of Unit or similar. TODO
+            flag=1;
+            break;
 
-                break;
+        case 4:
+            actual_missile_position[0] = missile->x_vector_coordinate[i];
+            actual_missile_position[1] = missile->y_vector_coordinate[i];
+            m_Canvas->Refresh();
+            m_Canvas->Update();
+            wxMilliSleep(1);
+            break;
+        case 5:
+            hit_armor(matrix, missile->x_vector_coordinate[i], missile->y_vector_coordinate[i], isBot);
+            flag = 1;
+
+            break;
         }
         if ( flag == 1 ) break;
     }
