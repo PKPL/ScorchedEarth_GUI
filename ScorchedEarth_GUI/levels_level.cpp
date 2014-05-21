@@ -4,6 +4,7 @@
 
 #include "levels_level.h"
 #include <time.h>
+#include <stdlib.h>
 
 
 level_struct selected_level; //Global variable selected_level if you want use it add "levels_level.h"

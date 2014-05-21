@@ -16,15 +16,29 @@
 //#include "menu_new_game.h"
 //#include "menu.h"
 
-void choose_levels(int map_layout [MAX_X][MAX_Y]) // function for agreagate testing
+void choose_levels(int i, int j) // function for agreagate testing
 {
-    levels(1);
-    test_edge();
+    levels(i);
+    test_edge(j);
     //create_mountain_map(map_layout);
 //    game_loop(map_layout);
 }
 
-void test_edge ()
+void test_edge (int j)
 {
-    selected_level.edge = EDGE_NO;
+    switch(j)
+    {
+        case 1:
+        selected_level.edge = EDGE_NO;
+        break;
+
+        case 2:
+        selected_level.edge = EDGE_BOUNCE;
+        break;
+
+        case 3:
+        selected_level.edge = EDGE_CONTINUE;
+        break;
+    }
+
 }

@@ -17,9 +17,15 @@
 
 #include "TestWx3Main.h"
 #include "maps_create.h"
+#include "levels.h"
+#include "unit.h"
+#include "drawing_units.h"
 
 int map_layout[100][80] = {{0}};
 int borderX[100];
+
+unit player;
+unit bot;
 
 //helper functions
 enum wxbuildinfoformat
@@ -97,7 +103,13 @@ void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
 {
     this->is2draw = TRUE;
 
+    choose_levels(1, 1);
     create_mountain_map(map_layout);
+
+    unit_func(&player);
+    unit_func(&bot);
+
+    drawing_units(map_layout, &player, &bot);
 
     int x, y;
     for (x = 0; x < 100; x++)
