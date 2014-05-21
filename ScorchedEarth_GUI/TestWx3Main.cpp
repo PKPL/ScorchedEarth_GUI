@@ -93,28 +93,6 @@ void TestWx3Dialog::m_CanvasOnPaint( wxPaintEvent& event )
     if(is2draw)Doc->drawLineTest(DC, *dark_green, map_layout, borderX);
 }
 
-void TestWx3Dialog::m_button3OnButtonClick( wxCommandEvent& event )
-{
-    Doc->angle1 += 0.1;
-    missile1 = NULL;
-    m_Canvas->Refresh();
-}
-
-void TestWx3Dialog::m_button4OnButtonClick( wxCommandEvent& event )
-{
-    Doc->angle1 -= 0.1;
-    missile1 = NULL;
-    m_Canvas->Refresh();
-}
-
-void TestWx3Dialog::m_button5OnButtonClick( wxCommandEvent& event )
-{
-    missile1 = initializeMissile(Doc->x1, Doc->y1);
-    xCoordinate(missile1, 0);
-    yCoordinate(missile1);
-    m_Canvas->Refresh();
-}
-
 void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
 {
     this->is2draw = TRUE;

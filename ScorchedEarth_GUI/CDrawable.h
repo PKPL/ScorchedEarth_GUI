@@ -16,7 +16,6 @@ class CDrawable
         void drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[100][80], int borderX[100]);
     protected:
     private:
-        void drawTank(wxBufferedPaintDC& DC, int X, int Y, wxColor C, double angle);
         virtual void m_button2OnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 };
 

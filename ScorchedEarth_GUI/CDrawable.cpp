@@ -84,21 +84,3 @@ void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[10
     DC.DrawPolygon(map_list);
 
 }
-
-void CDrawable::drawTank(wxBufferedPaintDC& DC, int X, int Y, wxColor C, double angle)
-{
-    wxBrush B;
-    wxPen P;
-    B.SetColour(*wxWHITE);
-    DC.SetBrush(B);
-    P.SetColour(C);
-    P.SetWidth(3);
-    DC.SetPen(P);
-    DC.DrawCircle(wxPoint(X,Y),wxCoord(10));
-    DC.DrawCircle(wxPoint(X+10,Y),wxCoord(10));
-    DC.DrawCircle(wxPoint(X+20,Y),wxCoord(10));
-    DC.DrawRectangle(wxPoint(X-10,Y-26),wxSize(40,15));
-    x1 = X+10+20*cos(angle);
-    y1 = Y-26-20*sin(angle);
-    DC.DrawLine(wxPoint(X+10,Y-26),wxPoint(x1,y1));
-}

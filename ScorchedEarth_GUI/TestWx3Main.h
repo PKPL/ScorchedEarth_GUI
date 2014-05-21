@@ -31,9 +31,6 @@ class TestWx3Dialog: public GUIDialog
         virtual void OnQuit(wxCommandEvent& event);
         virtual void OnAbout(wxCommandEvent& event);
         virtual void m_CanvasOnPaint( wxPaintEvent& event );
-        virtual void m_button3OnButtonClick( wxCommandEvent& event );
-		virtual void m_button4OnButtonClick( wxCommandEvent& event );
-		virtual void m_button5OnButtonClick( wxCommandEvent& event );
 		virtual void m_button2OnButtonClick( wxCommandEvent& event );
 
 
