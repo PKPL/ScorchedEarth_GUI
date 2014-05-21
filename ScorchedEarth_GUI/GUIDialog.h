@@ -29,28 +29,29 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// Class GUIDialog
 ///////////////////////////////////////////////////////////////////////////////
-class GUIDialog : public wxDialog
+class GUIDialog : public wxDialog 
 {
 	private:
-
+	
 	protected:
 		wxPanel* m_panel1;
 		wxStaticBitmap* top_image;
 		wxScrolledWindow* m_Canvas;
 		wxButton* m_button2;
-		//wxTextCtrl* m_textTest;
-
+		wxButton* m_buttonExplode;
+		wxTextCtrl* m_textTest;
+		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void m_CanvasOnPaint( wxPaintEvent& event ) { event.Skip(); }
 		virtual void m_button2OnButtonClick( wxCommandEvent& event ) { event.Skip(); }
-
-
+		
+	
 	public:
-
-		GUIDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Scorched Earth"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1280,720 ), long style = wxDEFAULT_DIALOG_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX );
+		
+		GUIDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("wxWidgets Application Template"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1280,720 ), long style = wxDEFAULT_DIALOG_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX );
 		~GUIDialog();
-
+	
 };
 
 #endif //__GUIDialog__
