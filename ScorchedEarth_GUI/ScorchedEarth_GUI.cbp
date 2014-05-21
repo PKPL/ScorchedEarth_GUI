@@ -79,6 +79,12 @@
 		<Unit filename="TestWx3Main.cpp" />
 		<Unit filename="TestWx3Main.h" />
 		<Unit filename="WxWizDialog.fbp" />
+		<Unit filename="drawing_units.cpp" />
+		<Unit filename="drawing_units.h" />
+		<Unit filename="levels.cpp" />
+		<Unit filename="levels.h" />
+		<Unit filename="levels_level.cpp" />
+		<Unit filename="levels_level.h" />
 		<Unit filename="maps.h" />
 		<Unit filename="maps_create.cpp" />
 		<Unit filename="maps_create.h" />
@@ -87,6 +93,8 @@
 		</Unit>
 		<Unit filename="shot_final_equation.cpp" />
 		<Unit filename="shot_final_equation.h" />
+		<Unit filename="unit.cpp" />
+		<Unit filename="unit.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

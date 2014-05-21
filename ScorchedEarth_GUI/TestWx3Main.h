@@ -15,7 +15,7 @@
 #include "TestWx3App.h"
 #include "CDrawable.h"
 #include "shot_final_equation.h"
-
+#include <wx/defs.h>
 #include "GUIDialog.h"
 
 class TestWx3Dialog: public GUIDialog
@@ -26,13 +26,17 @@ class TestWx3Dialog: public GUIDialog
     public:
         TestWx3Dialog(wxDialog *dlg);
         ~TestWx3Dialog();
+
     private:
         virtual void OnClose(wxCloseEvent& event);
         virtual void OnQuit(wxCommandEvent& event);
         virtual void OnAbout(wxCommandEvent& event);
         virtual void m_CanvasOnPaint( wxPaintEvent& event );
 		virtual void m_button2OnButtonClick( wxCommandEvent& event );
+		virtual void key_function( wxKeyEvent& event );
 
 
 };
+
+void calculate_ray();
 #endif // TESTWX3MAIN_H

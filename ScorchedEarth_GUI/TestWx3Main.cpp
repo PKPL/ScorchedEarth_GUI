@@ -20,9 +20,15 @@
 #include "levels.h"
 #include "unit.h"
 #include "drawing_units.h"
+#include "shot_formula.h"
 
 int map_layout[100][80] = {{0}};
 int borderX[100];
+float player_ray[4];
+float angle_drawing_distanse = 10;
+float angle_drawing_distanse_floating = 10;
+int player_angle = 60;
+float player_power = 100;
 
 unit player;
 unit bot;
@@ -85,7 +91,7 @@ void TestWx3Dialog::OnQuit(wxCommandEvent &event)
 void TestWx3Dialog::OnAbout(wxCommandEvent &event)
 {
     wxString msg = wxbuildinfo(long_f);
-    wxMessageBox(msg, _("Welcome to..."));
+    wxMessageBox(msg, _("Welplayer_power++;come to..."));
 }
 
 void TestWx3Dialog::m_CanvasOnPaint( wxPaintEvent& event )
@@ -124,5 +130,51 @@ void TestWx3Dialog::m_button2OnButtonClick( wxCommandEvent& event )
         }
     }
 
+    calculate_ray();
+
+
     m_Canvas->Refresh();
+}
+
+void TestWx3Dialog::key_function( wxKeyEvent& event)
+{
+
+    switch ( event.GetKeyCode() )
+        {
+            case WXK_LEFT:
+            player_angle++;
+            break;
+            case WXK_RIGHT:
+            player_angle--;
+            break;
+            case WXK_UP:
+            player_power++;
+            break;
+            case WXK_DOWN:
+            player_power--;
+            break;
+            case WXK_SPACE:
+            missile_data *missile;
+            missile = initializeMissile(player.x, player.y);
+            playerShot(missile, player_power, player_angle, map_layout,false, wind_speed);
+            break;
+
+        }
+
+    calculate_ray();
+    m_Canvas->Refresh();
+}
+
+void calculate_ray()
+{
+
+                    angle_drawing_distanse = 10;
+                    angle_drawing_distanse_floating = player_power/5.0;
+
+                    player_ray[0] = player.x + angle_drawing_distanse*cos(player_angle * PI / 180.0 );
+                    player_ray[1] = (player.y + angle_drawing_distanse*sin(player_angle * PI / 180.0 ));
+
+                    player_ray[2] = player.x + angle_drawing_distanse_floating*cos(player_angle * PI / 180.0 );
+                    player_ray[3] = (player.y + angle_drawing_distanse_floating*sin(player_angle * PI / 180.0 ));
+
 }

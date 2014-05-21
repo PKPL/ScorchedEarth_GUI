@@ -4,11 +4,13 @@
 #include "maps.h"
 #include "unit.h"
 
-int map_ratio = 7;
+float map_ratio = 7;
 wxList *map_list = new wxList();
 wxPoint *win1;
 wxColor *player_color = new wxColor(45,190,15,0);
 wxColor *enemy_color = new wxColor(250,20,15,0);
+wxColor *turret_color = new wxColor(150,120,200,0);
+extern float player_ray[2];
 
 
 
@@ -88,6 +90,20 @@ void CDrawable::drawLineTest(wxBufferedPaintDC& DC, wxColor C, int map_layout[10
     DC.SetBrush(B);
     DC.DrawPolygon(map_list);
 
+
+    P.SetColour(*turret_color);//Gun color
+    P.SetWidth(8);
+    DC.SetPen(P);
+    DC.DrawLine(player.x*map_ratio, (79 - player.y)*map_ratio, player_ray[0]*map_ratio, (79 - player_ray[1])*map_ratio);
+    P.SetColour(*wxBLACK);//Gun color
+    P.SetWidth(2);
+    DC.SetPen(P);
+    DC.DrawLine(player.x*map_ratio, (79 - player.y)*map_ratio, player_ray[2]*map_ratio, (79 - player_ray[3])*map_ratio);
+
+
+    P.SetColour(C);
+    P.SetWidth(3);
+    DC.SetPen(P);
     B.SetColour(*player_color);
     DC.SetBrush(B);
     DC.DrawCircle(wxPoint(player.x*map_ratio,(79-player.y)*map_ratio), 8);
